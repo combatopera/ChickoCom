@@ -41,8 +41,8 @@
 	addq.l	#4,-(sp)
 
 	dc.w	$a000		; hide mouse
-	move.l	4(a0),a1
-	move.l	8(a0),a2
+	movea.l	4(a0),a1
+	movea.l	8(a0),a2
 	dc.w	$a00a
 
 	move.w	#4,-(sp)		; getrez
