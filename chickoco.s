@@ -107,8 +107,8 @@ termina0:	move.w	#-1,-(sp)		; setcolor
 	addq.l	#6,sp
 
 	dc.w	$a000		; show mouse
-	move.l	4(a0),a1
-	move.l	8(a0),a2
+	movea.l	4(a0),a1
+	movea.l	8(a0),a2
 	clr.w	(a2)
 	clr.w	2(a1)
 	clr.w	6(a1)
