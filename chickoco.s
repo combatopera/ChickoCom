@@ -327,17 +327,17 @@ chat0:	move.w	#2,-(sp)
 	trap	#13
 	addq.l	#4,sp
 
-chatc:	cmpi.l	#$00430000,d0	; f9 resets the terminal
-	bne	chatd
+chath:	cmpi.l	#$00430000,d0	; f9 resets the terminal
+	bne	chati
 	bsr	title
 	bsr	termrset
 	bra	chat1
 
-chatd:	cmpi.l	#$00440000,d0	; f10 quits
-	bne	chate
+chati:	cmpi.l	#$00440000,d0	; f10 quits
+	bne	chatj
 	bra	chat2
 
-chate:	bsr	sendkey
+chatj:	bsr	sendkey
 
 chat1:	move.w	#1,-(sp)
 	move.w	#1,-(sp)
