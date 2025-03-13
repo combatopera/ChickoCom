@@ -278,6 +278,38 @@ chknocaa:	dc.b	0,0,0,0,0,0,0,0,0,0,0,0
 chknocab:	dc.b	"NO CARRIER",0,0
 
 
+* waitok
+
+waitok:	movem.l	d0-d3/a0-a3,-(sp)
+
+waitok0:	move.w	#1,-(sp)
+	move.w	#1,-(sp)
+	trap	#13
+	addq.l	#4,sp
+
+	tst.w	d0
+	beq	waitok0
+
+	move.w	#1,-(sp)
+	move.w	#2,-(sp)
+	trap	#13
+	addq.l	#4,sp
+
+	lea	waitoka,a0
+	move.b	1(a0),(a0)
+	move.b	d0,1(a0)
+
+	move.w	waitokb,d0
+	cmp.w	(a0),d0
+	bne	waitok0
+
+	movem.l	(sp)+,d0-d3/a0-a3
+	rts
+
+waitoka:	dc.b	0,0
+waitokb:	dc.b	"OK"
+
+
 * chat
 
 chat:	movem.l	d0-d3/a0-a3,-(sp)
