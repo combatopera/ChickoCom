@@ -288,7 +288,7 @@ sendkey:	movem.l	d0-d1/a0,-(sp)
 	sub.w	#59,d0
 	asl.w	#2,d0
 	lea	0(a0,d0.w),a0
-	move.l	(a0),a0
+	movea.l	(a0),a0
 	bsr	auxstr
 	bra	sendkey9
 
