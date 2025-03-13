@@ -385,6 +385,15 @@ chat3:	bsr	update
 chat2:	movem.l	(sp)+,d0-d3/a0-a3
 	rts
 
+debug5:	dc.w	0
+	even
+
+debug6:	dc.w	0
+	even
+
+debug7:	dc.w	0
+	even
+
 
 * sendkey
 
