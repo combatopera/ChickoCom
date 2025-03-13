@@ -327,6 +327,29 @@ chat0:	move.w	#2,-(sp)
 	trap	#13
 	addq.l	#4,sp
 
+	cmpi.l	#$003f0000,d0	; f5 puts debug5
+	bne	chate
+	lea	debug5,a0
+	bsr	putstr
+	bra	chat1
+
+chate:	cmpi.l	#$00400000,d0	; f6 puts debug6
+	bne	chatf
+	lea	debug6,a0
+	bsr	putstr
+	bra	chat1
+
+chatf:	cmpi.l	#$00410000,d0	; f7 puts debug7
+	bne	chatg
+	lea	debug7,a0
+	bsr	putstr
+	bra	chat1
+
+chatg:	cmpi.l	#$00420000,d0	; f8 hangs up
+	bne	chath
+	bsr	hang
+	bra	chat1
+
 chath:	cmpi.l	#$00430000,d0	; f9 resets the terminal
 	bne	chati
 	bsr	title
