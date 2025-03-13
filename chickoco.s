@@ -145,6 +145,70 @@ fname:	dc.b	"STATLINE.PI1",0
 	even
 
 
+* hang
+
+hang:	movem.l	d0-d3/a0-a3,-(sp)
+
+	tst.w	online
+	beq	hang9
+
+hang0:	move.w	#1,-(sp)
+	move.w	#8,-(sp)
+	trap	#13
+	addq.l	#4,sp
+
+	tst.w	d0
+	beq	hang0
+
+	move.l	$466,d0
+	addi.l	#60,d0		; 1.2 seconds
+hang1:	cmp.l	$466,d0
+	bgt	hang1
+
+	move.w	#43,-(sp)
+	move.w	#1,-(sp)
+	move.w	#3,-(sp)
+	trap	#13
+	addq.l	#6,sp
+
+	move.l	$466,d0
+	addi.l	#10,d0		; 0.2 seconds
+hang2:	cmp.l	$466,d0
+	bgt	hang2
+
+	move.w	#43,-(sp)
+	move.w	#1,-(sp)
+	move.w	#3,-(sp)
+	trap	#13
+	addq.l	#6,sp
+
+	move.l	$466,d0
+	addi.l	#10,d0		; 0.2 seconds
+hang3:	cmp.l	$466,d0
+	bgt	hang3
+
+	move.w	#43,-(sp)
+	move.w	#1,-(sp)
+	move.w	#3,-(sp)
+	trap	#13
+	addq.l	#6,sp
+
+	bsr	waitok
+
+	lea	hanga,a0
+	bsr	auxstr
+
+	bsr	waitok
+
+	clr.w	online
+
+hang9:	movem.l	(sp)+,d0-d3/a0-a3
+	rts
+
+hanga:	dc.b	"ATH0",13,10,0
+	even
+
+
 * chkrslt
 
 chkrslt:	tst.w	online
