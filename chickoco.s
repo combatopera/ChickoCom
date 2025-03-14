@@ -1644,7 +1644,7 @@ domaskb:	move.w	d1,d3
 domask4:	move.w	#$ffff,(a0)+
 	dbra	d4,domask4
 
-	movea.l	logbase,a1
+domask5:	movea.l	logbase,a1
 	mulu	#1280,d0
 	adda.l	d0,a1
 	moveq	#7,d0
