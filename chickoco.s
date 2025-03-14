@@ -1710,7 +1710,7 @@ colline9:	movem.l	(sp)+,d0-d7/a0-a3
 
 clrscr:	movem.l	d0-d7/a0-a6,-(sp)
 
-	move.l	logbase,a0
+	movea.l	logbase,a0
 	lea	30720(a0),a0
 
 	moveq	#0,d1
@@ -1763,7 +1763,7 @@ ding0:	move.w	#1,-(sp)
 putcsub:	movem.l	d0-d7/a0-a3,-(sp)
 
 	move.w	d0,d5
-	move.l	logbase,a0
+	movea.l	logbase,a0
 	mulu	#1280,d1
 	adda.l	d1,a0
 	andi.l	#$0000fffc,d0
@@ -2001,7 +2001,7 @@ putcurs:	movem.l	d0-d2/a0,-(sp)
 	move.w	urow,d1
 
 	move.w	d0,d2
-	move.l	logbase,a0
+	movea.l	logbase,a0
 	mulu	#1280,d1
 	adda.l	d1,a0
 	andi.l	#$0000fffc,d0
