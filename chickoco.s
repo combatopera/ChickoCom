@@ -1097,7 +1097,7 @@ elinefd1:	move.w	#23,urow
 	add.w	d2,d0
 	move.w	scrllen,d1
 	sub.w	d2,d1
-	bsr	scrollv
+	bsr	scrollu
 	move.w	scrltop,d0
 	add.w	scrllen,d0
 	subq.w	#1,d2
@@ -1238,7 +1238,7 @@ escrlup:	bsr	cursoff		; perfect
 	move.w	scrllen,d1
 	subq.w	#1,d1
 	moveq	#1,d2
-	bsr	scrollv
+	bsr	scrollu
 	move.w	scrltop,d0
 	add.w	scrllen,d0
 	subq.w	#1,d0
