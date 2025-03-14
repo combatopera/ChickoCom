@@ -1691,7 +1691,7 @@ colline:	movem.l	d0-d7/a0-a3,-(sp)
 	move.l	d0,d4
 	move.l	d1,d5		; 48 pixels
 	move.l	d0,d6
-	move.l	d1,a0		; 64 pixels
+	movea.l	d1,a0		; 64 pixels
 	movea.l	d0,a1
 	movea.l	d1,a2		; 80 pixels
 
