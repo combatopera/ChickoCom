@@ -821,7 +821,7 @@ putchar:	movem.l	d0-d4/a0-a3,-(sp)
 	tst.l	cursub
 	beq	putchari
 	bsr	donum
-	move.l	cursub,a0
+	movea.l	cursub,a0
 	jmp	(a0)
 
 putchari:	tst.w	nulled
