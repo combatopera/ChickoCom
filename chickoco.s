@@ -1182,14 +1182,23 @@ eclrdspc:	bsr	clrline
 	move.w	scrltop,urow
 eclrdsp9:	bra	ansifin
 
-eclrline:	move.w	numbers,d0	; only whole line present
+eclrline:	bsr	cursoff		; perfect
+	move.w	numbers,d0
 	cmpi.w	#0,d0
 	bne	eclrlin0
-
+	move.w	urow,d0
+	move.w	ucolumn,d1
+	moveq	#80,d2
+	sub.w	d1,d2
+	bsr	clrpart
 	bra	eclrlin9
 eclrlin0:	cmpi.w	#1,d0
 	bne	eclrlin1
-
+	move.w	urow,d0
+	moveq	#0,d1
+	move.w	ucolumn,d2
+	addq.w	#1,d2
+	bsr	clrpart
 	bra	eclrlin9
 eclrlin1:	cmpi.w	#2,d0
 	bne	eclrlin9
