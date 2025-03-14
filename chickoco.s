@@ -956,7 +956,7 @@ donum1:	tst.w	numflag		; if terminator identified
 	beq	donum9
 	clr.w	numflag
 	lea	curnum,a0
-	add.w	#1,(a0)
+	addq.w	#1,(a0)
 
 donum9:	movem.l	(sp)+,d0-d1/a0
 	rts
@@ -985,7 +985,7 @@ domulti:	cmpi.w	#64,d0
 	sub.w	#64,d0
 	asl.w	#2,d0
 	lea	0(a0,d0.w),a0
-	move.l	(a0),a0
+	movea.l	(a0),a0
 	jmp	(a0)
 
 domulti0:	dc.l	einschar,ecursup,ecursdn,ecursrt	;  ABC
