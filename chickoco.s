@@ -818,8 +818,6 @@ putstr9:	movem.l	(sp)+,d0/a0
 
 putchar:	movem.l	d0-d4/a0-a3,-(sp)
 
-	bsr	cursoff
-
 	tst.l	cursub
 	beq	putchari
 	bsr	donum
@@ -843,6 +841,7 @@ putcharz:	cmpi.w	#7,d0
 
 putchar0:	cmpi.w	#8,d0
 	bne	putchar1
+	bsr	cursoff
 	lea	ucolumn,a0
 	tst.w	(a0)
 	beq	putchar9
@@ -851,6 +850,7 @@ putchar0:	cmpi.w	#8,d0
 
 putchar1:	cmpi.w	#9,d0
 	bne	putchar2
+	bsr	cursoff
 	move.w	ucolumn,d0
 	addq.w	#8,d0
 	andi.w	#$fff8,d0
@@ -871,6 +871,7 @@ putchar3:	cmpi.w	#12,d0
 
 putchar4:	cmpi.w	#13,d0
 	bne	putchar5
+	bsr	cursoff
 	clr.w	ucolumn
 	bra	putchar9
 
@@ -881,7 +882,8 @@ putchar5:	tst.w	d0
 	move.w	#1,nulled
 	bra	putchar9
 
-putchar6:	move.w	d0,d4
+putchar6:	bsr	cursoff
+	move.w	d0,d4
 	move.w	ucolumn,d0
 	move.w	urow,d1
 	move.w	uattrib+4,d2
