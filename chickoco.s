@@ -1458,7 +1458,8 @@ erescurs:	move.w	esavcur0,ucolumn	; perfect
 	move.w	esavcur0+2,urow
 	bra	ansifin
 
-ereset:	bra	ansifin		; blank
+ereset:	bsr	termrset		; perfect
+	bra	ansifin
 
 
 * ansifin
