@@ -1675,7 +1675,7 @@ colline:	movem.l	d0-d7/a0-a3,-(sp)
 	cmpi.w	#23,d0
 	bgt	colline9
 
-	move.l	logbase,a3
+	movea.l	logbase,a3
 	addq.w	#1,d0
 	mulu	#1280,d0
 	adda.l	d0,a3
