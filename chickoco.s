@@ -1263,9 +1263,30 @@ eclear:	bsr	cursoff		; perfect
 	clr.w	urow
 	bra	ansifin
 
-edelline:	bra	ansifin		; blank
+edelline:	bsr	cursoff		; perfect
+	move.w	numbers,d0
+	tst.w	d0
+	bne	edellin0
+	moveq	#1,d0
+edellin0:	move.w	d0,d2
+	move.w	urow,d0
+	move.w	scrltop,d1
+	add.w	scrllen,d1
+	sub.w	d0,d1
+	sub.w	d2,d1
+	add.w	d2,d0
+	bsr	scrollu
+	move.w	scrltop,d0
+	add.w	scrllen,d0
+	move.w	uattrib+2,d1
+	subq.w	#1,d2
+edellin1:	subq.w	#1,d0
+	bsr	colline
+	dbra	d2,edellin1
+	bra	ansifin
 
-ebacktab:	move.w	ucolumn,d0	; perfect
+ebacktab:	bsr	cursoff		; perfect
+	move.w	ucolumn,d0
 	subq.w	#1,d0
 	andi.w	#$fff8,d0
 	cmpi.w	#0,d0
