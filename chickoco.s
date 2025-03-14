@@ -1574,6 +1574,98 @@ clrline9:	movem.l	(sp)+,d0-d7/a0-a6
 	rts
 
 
+* clrpart
+
+clrpart:	movem.l	d0-d4/a0-a1,-(sp)
+
+	lea	linemask,a0
+
+	move.w	d1,d3
+	asr.w	#2,d3
+	subq.w	#1,d3
+	tst.w	d3
+	bmi	domask1
+domask0:	move.w	#$ffff,(a0)+
+	dbra	d3,domask0
+
+domask1:	move.w	d1,d3
+	andi.w	#3,d3
+	asl.w	#2,d3
+	moveq	#16,d4
+	sub.w	d3,d4
+	moveq	#0,d3
+	bset	d4,d3
+	subq.w	#1,d3
+	eori.w	#$ffff,d3
+	move.w	d3,(a0)+
+
+	move.w	d1,d3
+	add.w	d2,d3
+	subq.w	#1,d3
+	asr.w	#2,d3
+	move.w	d1,d4
+	asr.w	#2,d4
+	sub.w	d4,d3
+	subq.w	#2,d3
+	tst.w	d3
+	bmi	domask3
+domask2:	clr.w	(a0)+
+	dbra	d3,domask2
+
+domask3:	move.l	a0,d3
+	sub.l	#linemask,d3
+	cmpi.l	#40,d3
+	beq	domask5
+
+	move.w	d1,d3
+	add.w	d2,d3
+	andi.w	#3,d3
+	tst.w	d3
+	beq	domaska
+	asl.w	#2,d3
+	moveq	#16,d4
+	sub.w	d3,d4
+	moveq	#0,d3
+	bset	d4,d3
+	subq.w	#1,d3
+	move.w	d3,(a0)+
+	bra	domaskb
+domaska:	clr.w	(a0)+
+
+domaskb:	move.w	d1,d3
+	add.w	d2,d3
+	addq.w	#3,d3
+	asr.w	#2,d3
+	moveq	#20,d4
+	sub.w	d3,d4
+	subq.w	#1,d4
+	tst.w	d4
+	bmi	domask5
+domask4:	move.w	#$ffff,(a0)+
+	dbra	d4,domask4
+
+	movea.l	logbase,a1
+	mulu	#1280,d0
+	adda.l	d0,a1
+	moveq	#7,d0
+clrpart6:	lea	linemask,a0
+	moveq	#19,d1
+clrpart7:	move.w	(a0),d2
+	swap	d2
+	move.w	(a0)+,d2
+	move.l	(a1),d3
+	and.l	d2,d3
+	move.l	d3,(a1)+
+	move.l	(a1),d3
+	and.l	d2,d3
+	move.l	d3,(a1)+
+	dbra	d1,clrpart7
+	dbra	d0,clrpart6
+
+	movem.l	(sp)+,d0-d4/a0-a1
+	rts
+
+
 * colline
 
 colline:	movem.l	d0-d7/a0-a3,-(sp)
