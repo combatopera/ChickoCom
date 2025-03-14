@@ -1540,6 +1540,11 @@ scrolld9:	movem.l	(sp)+,d0-d7/a0-a6
 
 clrline:	movem.l	d0-d7/a0-a6,-(sp)
 
+	cmpi.w	#0,d0
+	blt	clrline9
+	cmpi.w	#23,d0
+	bgt	clrline9
+
 	move.l	logbase,a0
 	addq.w	#1,d0
 	mulu	#1280,d0
@@ -1565,7 +1570,7 @@ clrline0:	movem.l	d1-d7/a1-a6,-(a0)
 
 	movem.l	d1-d7/a1,-(a0)
 
-	movem.l	(sp)+,d0-d7/a0-a6
+clrline9:	movem.l	(sp)+,d0-d7/a0-a6
 	rts
 
 
