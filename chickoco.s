@@ -1135,7 +1135,8 @@ emoveto1:	subq.w	#1,d0
 emovetob:	move.w	d0,ucolumn
 	bra	ansifin
 
-eclrdspl:	move.w	numbers,d0	; only whole screen present
+eclrdspl:	bsr	cursoff		; only whole screen present
+	move.w	numbers,d0
 	cmpi.w	#0,d0
 	bne	eclrdsp0
 
