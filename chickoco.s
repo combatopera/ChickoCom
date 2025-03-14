@@ -1135,21 +1135,51 @@ emoveto1:	subq.w	#1,d0
 emovetob:	move.w	d0,ucolumn
 	bra	ansifin
 
-eclrdspl:	bsr	cursoff		; only whole screen present
+eclrdspl:	bsr	cursoff		; perfect
 	move.w	numbers,d0
 	cmpi.w	#0,d0
 	bne	eclrdsp0
-
+	move.w	urow,d0
+	move.w	ucolumn,d1
+	moveq	#80,d2
+	sub.w	d1,d2
+	bsr	clrpart
+	move.w	scrltop,d1
+	add.w	scrllen,d1
+	sub.w	d0,d1
+	subq.w	#2,d1
+	tst.w	d1
+	bmi	eclrdsp9
+eclrdspa:	addq.w	#1,d0
+	bsr	clrline
+	dbra	d1,eclrdspa
 	bra	eclrdsp9
 eclrdsp0:	cmpi.w	#1,d0
 	bne	eclrdsp1
-
+	move.w	urow,d0
+	moveq	#0,d1
+	move.w	ucolumn,d2
+	addq.w	#1,d2
+	bsr	clrpart
+	move.w	d0,d1
+	sub.w	scrltop,d1
+	subq.w	#1,d1
+	tst.w	d1
+	bmi	eclrdsp9
+eclrdspb:	subq.w	#1,d0
+	bsr	clrline
+	dbra	d1,eclrdspb
 	bra	eclrdsp9
 eclrdsp1:	cmpi.w	#2,d0
 	bne	eclrdsp9
-	bsr	clrscr
+	move.w	scrltop,d0
+	move.w	scrllen,d1
+	subq.w	#1,d1
+eclrdspc:	bsr	clrline
+	addq.w	#1,d0
+	dbra	d1,eclrdspc
 	clr.w	ucolumn
-	clr.w	urow
+	move.w	scrltop,urow
 eclrdsp9:	bra	ansifin
 
 eclrline:	move.w	numbers,d0	; only whole line present
