@@ -1237,7 +1237,7 @@ escrlup:	bsr	cursoff		; perfect
 	addq.w	#1,d0
 	move.w	scrllen,d1
 	subq.w	#1,d1
-	moveq	#-1,d2
+	moveq	#1,d2
 	bsr	scrollv
 	move.w	scrltop,d0
 	add.w	scrllen,d0
@@ -1251,7 +1251,7 @@ escrldn:	bsr	cursoff		; perfect
 	move.w	scrllen,d1
 	subq.w	#1,d1
 	moveq	#1,d2
-	bsr	scrollv
+	bsr	scrolld
 	move.w	scrltop,d0
 	move.w	uattrib+2,d1
 	bsr	colline
