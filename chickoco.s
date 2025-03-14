@@ -1334,9 +1334,12 @@ eclropt1:	cmpi.w	#255,d0
 	clr.w	doorway
 eclropt9:	bra	ansifin
 
-esetvid:	lea	numbers,a0	; blink and underline missing
+esetvid:	lea	numbers,a0	; crippled
 	move.w	curnum,d1
-	subq.w	#1,d1
+	tst.w	d1
+	bne	esetvida
+	moveq	#1,d1
+esetvida:	subq.w	#1,d1
 esetvid0:	move.w	(a0)+,d0
 	tst.w	d0
 	bne	esetvid1
