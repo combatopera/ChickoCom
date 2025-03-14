@@ -1475,29 +1475,64 @@ ansifin:	clr.l	cursub
 	bra	putchar9
 
 
-* scrollv
-* d0.w start, d1.w len, d2.w count
+* scrollu
 
-scrollv:	movem.l	d0-d7/a0-a6,-(sp)
+scrollu:	movem.l	d0-d7/a0-a6,-(sp)
 
-	move.l	logbase,a0
+	cmpi.w	#0,d1
+	ble	scrollu9
+
+	movea.l	logbase,a0
 	mulu	#1280,d0
-	adda.l	d0,a0
+	adda.l	d0,a0		; start of source
 
-	move.l	a0,a1
-	muls	#1280,d2
-	adda.l	d2,a1
+	movea.l	a0,a1
+	mulu	#1280,d2
+	suba.l	d2,a1		; start of destination
 
 	subq.w	#1,d1
-scrollv1:	moveq	#28,d0
-scrollv0:	movem.l	(a0)+,d2-d7/a2-a6
+scrollu1:	moveq	#28,d0
+scrollu0:	movem.l	(a0)+,d2-d7/a2-a6
 	movem.l	d2-d7/a2-a6,(a1)
 	lea	44(a1),a1
-	dbra	d0,scrollv0
+	dbra	d0,scrollu0
 	move.l	(a0)+,(a1)+
-	dbra	d1,scrollv1
+	dbra	d1,scrollu1
 
-	movem.l	(sp)+,d0-d7/a0-a6
+scrollu9:	movem.l	(sp)+,d0-d7/a0-a6
+	rts
+
+
+* scrolld
+
+scrolld:	movem.l	d0-d7/a0-a6,-(sp)
+
+	cmpi.w	#0,d1
+	ble	scrolld9
+
+	movea.l	logbase,a0
+	mulu	#1280,d0
+	adda.l	d0,a0		; start of source
+
+	movea.l	a0,a1
+	mulu	#1280,d2
+	adda.l	d2,a1		; start of destination
+
+	move.w	d1,d2
+	mulu	#1280,d2
+	adda.l	d2,a0		; end of source
+	adda.l	d2,a1		; end of destination
+
+	subq.w	#1,d1
+scrolld1:	moveq	#28,d0
+scrolld0:	suba.l	#44,a0
+	movem.l	(a0),d2-d7/a2-a6
+	movem.l	d2-d7/a2-a6,-(a1)
+	dbra	d0,scrolld0
+	move.l	-(a0),-(a1)
+	dbra	d1,scrolld1
+
+scrolld9:	movem.l	(sp)+,d0-d7/a0-a6
 	rts
 
 
