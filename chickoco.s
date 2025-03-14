@@ -1232,7 +1232,8 @@ emusicn:	bra	ansifin		; crippled
 
 edelchar:	bra	ansifin		; blank
 
-escrlup:	move.w	scrltop,d0	; perfect
+escrlup:	bsr	cursoff		; perfect
+	move.w	scrltop,d0
 	addq.w	#1,d0
 	move.w	scrllen,d1
 	subq.w	#1,d1
@@ -1245,7 +1246,8 @@ escrlup:	move.w	scrltop,d0	; perfect
 	bsr	colline
 	bra	ansifin
 
-escrldn:	move.w	scrltop,d0	; perfect
+escrldn:	bsr	cursoff		; perfect
+	move.w	scrltop,d0
 	move.w	scrllen,d1
 	subq.w	#1,d1
 	moveq	#1,d2
@@ -1255,7 +1257,8 @@ escrldn:	move.w	scrltop,d0	; perfect
 	bsr	colline
 	bra	ansifin
 
-eclear:	bsr	clrscr		; perfect
+eclear:	bsr	cursoff		; perfect
+	bsr	clrscr
 	clr.w	ucolumn
 	clr.w	urow
 	bra	ansifin
