@@ -1106,7 +1106,8 @@ elinefd2:	subq.w	#1,d0
 	dbra	d2,elinefd2
 elinefd9:	bra	ansifin
 
-emoveto:	move.w	numbers,d0	; perfect
+emoveto:	bsr	cursoff		; perfect
+	move.w	numbers,d0
 	tst.w	d0
 	bne	emoveto0
 	moveq	#1,d0
