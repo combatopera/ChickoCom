@@ -735,8 +735,10 @@ chkcaps9:	movem.l	(sp)+,d0-d3/a0-a3
 
 title:	movem.l	d0-d7/a0-a6,-(sp)
 
+	bsr	cursoff
+
 	lea	titlescr,a0
-	move.l	logbase,a1
+	movea.l	logbase,a1
 
 	move.w	#665,d0
 title0:	movem.l	(a0)+,d1-d7/a2-a6
