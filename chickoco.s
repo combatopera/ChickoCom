@@ -845,7 +845,7 @@ putchar0:	cmpi.w	#8,d0
 	lea	ucolumn,a0
 	tst.w	(a0)
 	beq	putchar9
-	sub.w	#1,(a0)
+	subq.w	#1,(a0)
 	bra	putchar9
 
 putchar1:	cmpi.w	#9,d0
