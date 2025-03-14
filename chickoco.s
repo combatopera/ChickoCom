@@ -1008,7 +1008,8 @@ domulti0:	dc.l	einschar,ecursup,ecursdn,ecursrt	;  ABC
 
 einschar:	bra	ansifin
 
-ecursup:	move.w	numbers,d0	; perfect
+ecursup:	bsr	cursoff		; perfect
+	move.w	numbers,d0
 	tst.w	d0
 	bne	ecursup0
 	moveq	#1,d0
@@ -1027,7 +1028,8 @@ ecursup1:	move.w	scrltop,d0
 ecursup9:	move.w	d1,urow
 	bra	ansifin
 
-ecursdn:	move.w	numbers,d0	; perfect
+ecursdn:	bsr	cursoff		; perfect
+	move.w	numbers,d0
 	tst.w	d0
 	bne	ecursdn0
 	moveq	#1,d0
