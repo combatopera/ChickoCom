@@ -1205,9 +1205,31 @@ eclrlin1:	cmpi.w	#2,d0
 	bsr	clrline
 eclrlin9:	bra	ansifin
 
-einsline:	bra	ansifin		; blank
-emusicm:	bra	ansifin		; blank
-emusicn:	bra	ansifin		; blank
+einsline:	bsr	cursoff		; perfect
+	move.w	numbers,d0
+	tst.w	d0
+	bne	einslin0
+	moveq	#1,d0
+einslin0:	move.w	d0,d2
+	move.w	urow,d0
+	move.w	scrltop,d1
+	add.w	scrllen,d1
+	sub.w	d0,d1
+	sub.w	d2,d1
+	bsr	scrolld
+	move.w	uattrib+2,d1
+	subq.w	#1,d2
+einslin1:	bsr	colline
+	addq.w	#1,d0
+	dbra	d2,einslin1
+	bra	ansifin
+
+emusicm:	tst.w	banana		; crippled
+	beq	edelline
+	bra	ansifin
+
+emusicn:	bra	ansifin		; crippled
+
 edelchar:	bra	ansifin		; blank
 
 escrlup:	move.w	scrltop,d0	; perfect
