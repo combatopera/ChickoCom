@@ -1665,6 +1665,8 @@ clrpart7:	move.w	(a0),d2
 	movem.l	(sp)+,d0-d4/a0-a1
 	rts
 
+linemask:	ds.w	20
+
 
 * colline
 
