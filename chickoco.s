@@ -1399,10 +1399,10 @@ ereport:	move.w	numbers,d0	; perfect
 	mulu	#10,d1
 	sub.w	d1,d0
 	move.b	d0,6(a0)		; units
-	add.b	#48,2(a0)
-	add.b	#48,3(a0)
-	add.b	#48,5(a0)
-	add.b	#48,6(a0)
+	addi.b	#48,2(a0)
+	addi.b	#48,3(a0)
+	addi.b	#48,5(a0)
+	addi.b	#48,6(a0)
 	bsr	auxstr
 	bra	ereport9
 ereport8:	cmpi.w	#255,d0
