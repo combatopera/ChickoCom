@@ -1050,7 +1050,8 @@ ecursdn1:	move.w	scrltop,d0
 ecursdn9:	move.w	d1,urow
 	bra	ansifin
 
-ecursrt:	move.w	numbers,d0	; perfect
+ecursrt:	bsr       cursoff             ; perfect
+	move.w	numbers,d0
 	tst.w	d0
 	bne	ecursrt0
 	moveq	#1,d0
@@ -1074,7 +1075,8 @@ ecurslt0:	move.w	ucolumn,d1
 ecurslt1:	move.w	d1,ucolumn
 	bra	ansifin
 
-elinefd:	move.w	numbers,d0	; perfect
+elinefd:	bsr       cursoff             ; perfect
+	move.w	numbers,d0
 	tst.w	d0
 	bne	elinefd0
 	moveq	#1,d0
