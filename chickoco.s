@@ -1063,7 +1063,8 @@ ecursrt0:	move.w	ucolumn,d1
 ecursrt1:	move.w	d1,ucolumn
 	bra	ansifin
 
-ecurslt:	move.w	numbers,d0	; perfect
+ecurslt:	bsr	cursoff		; perfect
+	move.w	numbers,d0
 	tst.w	d0
 	bne	ecurslt0
 	moveq	#1,d0
