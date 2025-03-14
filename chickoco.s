@@ -1097,11 +1097,9 @@ elinefd1:	move.w	#23,urow
 	add.w	d2,d0
 	move.w	scrllen,d1
 	sub.w	d2,d1
-	neg.w	d2
 	bsr	scrollv
 	move.w	scrltop,d0
 	add.w	scrllen,d0
-	neg.w	d2
 	subq.w	#1,d2
 elinefd2:	subq.w	#1,d0
 	bsr	clrline
