@@ -1545,7 +1545,7 @@ clrline:	movem.l	d0-d7/a0-a6,-(sp)
 	cmpi.w	#23,d0
 	bgt	clrline9
 
-	move.l	logbase,a0
+	movea.l	logbase,a0
 	addq.w	#1,d0
 	mulu	#1280,d0
 	adda.l	d0,a0
