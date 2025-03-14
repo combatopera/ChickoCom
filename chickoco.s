@@ -1670,6 +1670,11 @@ clrpart7:	move.w	(a0),d2
 
 colline:	movem.l	d0-d7/a0-a3,-(sp)
 
+	cmpi.w	#0,d0
+	blt	colline9
+	cmpi.w	#23,d0
+	bgt	colline9
+
 	move.l	logbase,a3
 	addq.w	#1,d0
 	mulu	#1280,d0
@@ -1697,7 +1702,7 @@ colline0:	movem.l	d0-d6/a0-a2,-(a3)
 	movem.l	d0-d6/a0-a2,-(a3)
 	dbra	d7,colline0
 
-	movem.l	(sp)+,d0-d7/a0-a3
+colline9:	movem.l	(sp)+,d0-d7/a0-a3
 	rts
 
 
