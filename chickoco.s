@@ -2028,6 +2028,6 @@ putcurs5:	eor.w	d1,(a0)
 	rts
 
 
-	.bss
+	bss
 
 titlescr:	ds.b	32000
