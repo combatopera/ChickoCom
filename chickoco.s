@@ -1459,7 +1459,7 @@ erescurs:	move.w	esavcur0,ucolumn	; perfect
 	bra	ansifin
 
 ereset:	bsr	termrset		; perfect
-	bra	ansifin
+	dc.l	$60000002		; bra ansifin
 
 
 * ansifin
