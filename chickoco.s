@@ -1224,11 +1224,11 @@ einslin1:	bsr	colline
 	dbra	d2,einslin1
 	bra	ansifin
 
-emusicm:	tst.w	banana		; crippled
+emusicm:	tst.w	banana		; lacking
 	beq	edelline
 	bra	ansifin
 
-emusicn:	bra	ansifin		; crippled
+emusicn:	bra	ansifin		; lacking
 
 edelchar:	bra	ansifin		; blank
 
@@ -1334,7 +1334,7 @@ eclropt1:	cmpi.w	#255,d0
 	clr.w	doorway
 eclropt9:	bra	ansifin
 
-esetvid:	lea	numbers,a0	; crippled
+esetvid:	lea	numbers,a0	; lacking
 	move.w	curnum,d1
 	tst.w	d1
 	bne	esetvida

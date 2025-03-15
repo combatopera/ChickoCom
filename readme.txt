@@ -112,7 +112,7 @@
 	0.1	08/07/97	First freeware release  of  ChickoCom  -
 				also my first ever software  release  of
 				all  time!  This  version  was  slightly
-				crippled and I didn't  acknowledge  some
+				lacking and I  didn't  acknowledge  some
 				people I should have done.
 
 	0.2	12/07/97	More escape sequences supported,  cursor
