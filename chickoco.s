@@ -1008,7 +1008,7 @@ domulti0:	dc.l	einschar,ecursup,ecursdn,ecursrt	;  ABC
 
 einschar:	bra	ansifin
 
-ecursup:	bsr	cursoff		; perfect
+ecursup:	bsr	cursoff		; complete
 	move.w	numbers,d0
 	tst.w	d0
 	bne	ecursup0
@@ -1028,7 +1028,7 @@ ecursup1:	move.w	scrltop,d0
 ecursup9:	move.w	d1,urow
 	bra	ansifin
 
-ecursdn:	bsr	cursoff		; perfect
+ecursdn:	bsr	cursoff		; complete
 	move.w	numbers,d0
 	tst.w	d0
 	bne	ecursdn0
@@ -1050,7 +1050,7 @@ ecursdn1:	move.w	scrltop,d0
 ecursdn9:	move.w	d1,urow
 	bra	ansifin
 
-ecursrt:	bsr       cursoff             ; perfect
+ecursrt:	bsr       cursoff             ; complete
 	move.w	numbers,d0
 	tst.w	d0
 	bne	ecursrt0
@@ -1063,7 +1063,7 @@ ecursrt0:	move.w	ucolumn,d1
 ecursrt1:	move.w	d1,ucolumn
 	bra	ansifin
 
-ecurslt:	bsr	cursoff		; perfect
+ecurslt:	bsr	cursoff		; complete
 	move.w	numbers,d0
 	tst.w	d0
 	bne	ecurslt0
@@ -1076,7 +1076,7 @@ ecurslt0:	move.w	ucolumn,d1
 ecurslt1:	move.w	d1,ucolumn
 	bra	ansifin
 
-elinefd:	bsr       cursoff             ; perfect
+elinefd:	bsr       cursoff             ; complete
 	move.w	numbers,d0
 	tst.w	d0
 	bne	elinefd0
@@ -1106,7 +1106,7 @@ elinefd2:	subq.w	#1,d0
 	dbra	d2,elinefd2
 elinefd9:	bra	ansifin
 
-emoveto:	bsr	cursoff		; perfect
+emoveto:	bsr	cursoff		; complete
 	move.w	numbers,d0
 	tst.w	d0
 	bne	emoveto0
@@ -1135,7 +1135,7 @@ emoveto1:	subq.w	#1,d0
 emovetob:	move.w	d0,ucolumn
 	bra	ansifin
 
-eclrdspl:	bsr	cursoff		; perfect
+eclrdspl:	bsr	cursoff		; complete
 	move.w	numbers,d0
 	cmpi.w	#0,d0
 	bne	eclrdsp0
@@ -1182,7 +1182,7 @@ eclrdspc:	bsr	clrline
 	move.w	scrltop,urow
 eclrdsp9:	bra	ansifin
 
-eclrline:	bsr	cursoff		; perfect
+eclrline:	bsr	cursoff		; complete
 	move.w	numbers,d0
 	cmpi.w	#0,d0
 	bne	eclrlin0
@@ -1205,7 +1205,7 @@ eclrlin1:	cmpi.w	#2,d0
 	bsr	clrline
 eclrlin9:	bra	ansifin
 
-einsline:	bsr	cursoff		; perfect
+einsline:	bsr	cursoff		; complete
 	move.w	numbers,d0
 	tst.w	d0
 	bne	einslin0
@@ -1232,7 +1232,7 @@ emusicn:	bra	ansifin		; crippled
 
 edelchar:	bra	ansifin		; blank
 
-escrlup:	bsr	cursoff		; perfect
+escrlup:	bsr	cursoff		; complete
 	move.w	scrltop,d0
 	addq.w	#1,d0
 	move.w	scrllen,d1
@@ -1246,7 +1246,7 @@ escrlup:	bsr	cursoff		; perfect
 	bsr	colline
 	bra	ansifin
 
-escrldn:	bsr	cursoff		; perfect
+escrldn:	bsr	cursoff		; complete
 	move.w	scrltop,d0
 	move.w	scrllen,d1
 	subq.w	#1,d1
@@ -1257,13 +1257,13 @@ escrldn:	bsr	cursoff		; perfect
 	bsr	colline
 	bra	ansifin
 
-eclear:	bsr	cursoff		; perfect
+eclear:	bsr	cursoff		; complete
 	bsr	clrscr
 	clr.w	ucolumn
 	clr.w	urow
 	bra	ansifin
 
-edelline:	bsr	cursoff		; perfect
+edelline:	bsr	cursoff		; complete
 	move.w	numbers,d0
 	tst.w	d0
 	bne	edellin0
@@ -1285,7 +1285,7 @@ edellin1:	subq.w	#1,d0
 	dbra	d2,edellin1
 	bra	ansifin
 
-ebacktab:	bsr	cursoff		; perfect
+ebacktab:	bsr	cursoff		; complete
 	move.w	ucolumn,d0
 	subq.w	#1,d0
 	andi.w	#$fff8,d0
@@ -1295,18 +1295,18 @@ ebacktab:	bsr	cursoff		; perfect
 ebackta0:	move.w	d0,ucolumn
 	bra	ansifin
 
-ebanana:	move.w	#1,banana		; perfect
+ebanana:	move.w	#1,banana		; complete
 	lea	ebanana0,a0
 	bsr	auxstr
 	bra	ansifin
 ebanana0:	dc.b	"002",0
 
-equery:	lea	equery0,a0	; perfect
+equery:	lea	equery0,a0	; complete
 	bsr	auxstr
 	bra	ansifin
 equery0:	dc.b	27,"[?1;2c",0
 
-esetopt:	move.w	numbers,d0	; perfect
+esetopt:	move.w	numbers,d0	; complete
 	cmpi.w	#6,d0
 	bne	esetopt0
 	move.w	#1,relative
@@ -1320,7 +1320,7 @@ esetopt1:	cmpi.w	#255,d0
 	move.w	#1,doorway
 esetopt9:	bra	ansifin
 
-eclropt:	move.w	numbers,d0	; perfect
+eclropt:	move.w	numbers,d0	; complete
 	cmpi.w	#6,d0
 	bne	eclropt0
 	clr.w	relative
@@ -1381,7 +1381,7 @@ esetvid6:	cmpi.w	#40,d0
 esetvid9:	dbra	d1,esetvid0
 	bra	ansifin
 
-ereport:	move.w	numbers,d0	; perfect
+ereport:	move.w	numbers,d0	; complete
 	cmpi.w	#6,d0
 	bne	ereport8
 	lea	ereporta,a0
@@ -1413,7 +1413,7 @@ ereport9:	bra	ansifin
 ereporta:	dc.b	27,"[00;00R",0
 ereportb:	dc.b	27,"[24;80R",0
 
-elights:	move.w	numbers,d0	; perfect
+elights:	move.w	numbers,d0	; complete
 	cmpi.w	#0,d0
 	bne	elights0
 	clr.w	led1
@@ -1428,7 +1428,7 @@ elights1:	cmpi.w	#2,d0
 	move.w	#1,led2
 elights9:	bra	ansifin
 
-eregion:	clr.w	relative		; perfect
+eregion:	clr.w	relative		; complete
 	move.w	#1,wordwrap
 	move.w	numbers,d0
 	move.w	numbers+2,d1
@@ -1449,16 +1449,16 @@ eregion1:	sub.w	d0,d1
 	move.w	d1,scrllen
 eregion9:	bra	ansifin
 
-esavcurs:	move.w	ucolumn,esavcur0	; perfect
+esavcurs:	move.w	ucolumn,esavcur0	; complete
 	move.w	urow,esavcur0+2
 	bra	ansifin
 esavcur0:	dc.w	0,0
 
-erescurs:	move.w	esavcur0,ucolumn	; perfect
+erescurs:	move.w	esavcur0,ucolumn	; complete
 	move.w	esavcur0+2,urow
 	bra	ansifin
 
-ereset:	bsr	termrset		; perfect
+ereset:	bsr	termrset		; complete
 	dc.l	$60000002		; bra ansifin
 
 
