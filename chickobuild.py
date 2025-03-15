@@ -1,3 +1,4 @@
+from lagoon.sic.text import vasmm68k_mot
 from PIL import Image
 from struct import pack
 
@@ -20,6 +21,7 @@ def main():
                 for b in range(4):
                     words[b] = (words[b] << 1) | ((value >> b) & 0x1)
             g.write(pack('>HHHH', *words))
+    vasmm68k_mot._Ftos._devpac[print]('-o', 'chickoco.prg', 'chickoco.s')
 
 if '__main__' == __name__:
     main()
